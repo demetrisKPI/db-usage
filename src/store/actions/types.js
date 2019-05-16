@@ -5,3 +5,5 @@ export const FETCH_TASK_TABLE = 'FETCH_TASK_TABLE';
 export const ADD_USER = 'ADD_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const SET_TASK = 'SET_TASK';
+export const ADD_TASK = 'ADD_TASK';
+export const SET_TASK_STATE = 'SET_TASK_STATE';
