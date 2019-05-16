@@ -6,8 +6,10 @@ import { changeActiveItem } from '../store/actions/';
 
 class Navbar extends Component {
     handleItemClick = (e, { content }) => {
-        this.setState({ activeItem: content });
-        this.props.changeActiveItem(content);
+        if (this.props.logged) {
+            this.setState({ activeItem: content });
+            this.props.changeActiveItem(content);
+        }
     }
 
     render() {
@@ -46,7 +48,8 @@ class Navbar extends Component {
 
 export default connect(
     state => ({
-        activeItem: state.active.activeItem
+        activeItem: state.active.activeItem,
+        logged: state.active.logged
     }),
     { changeActiveItem }
 )(Navbar);

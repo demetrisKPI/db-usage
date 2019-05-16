@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'semantic-ui-react';
-import { fetchUserTable } from '../store/actions/'
+import { fetchUserTable } from '../store/actions/';
+import { Tab, Form, Label, Header, FormField } from 'semantic-ui-react';
 
-class UserTable extends Component {
+class SetTask extends Component {
     state = {
+        task: 'initial',
         userTable: [
             {
                 "id": 1,
@@ -53,36 +54,33 @@ class UserTable extends Component {
             }
         ]
     }
-    // componentDidMount() {
-    //     this.props.fetchUserTable();
-    // }
+    handleSelectUser = (e, { value }) => {
+        this.setState({ task: value });
+    }
+    componentDidMount() {
+        this.props.fetchUserTable();
+    }
+    renderTask() {
+        if (this.state.task === 'initial') return <div></div>;
+        else if (this.state.task) return <Label style={{marginTop: '23px'}} size='large' color='green'>User is already occupied</Label>;
+        else return <Label style={{marginTop: '23px'}} size='large' color='red'>No task is set for this user yet</Label>
+    }
     render() {
         return (
-            <Table celled>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell>Id</Table.HeaderCell>
-                        <Table.HeaderCell>Name</Table.HeaderCell>
-                        <Table.HeaderCell>Task</Table.HeaderCell>
-                        <Table.HeaderCell>Comm</Table.HeaderCell>
-                        <Table.HeaderCell>Worbef</Table.HeaderCell>
-                        <Table.HeaderCell>Skills</Table.HeaderCell>
-                        <Table.HeaderCell>Knowledge</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
-
-                <Table.Body>
-                    {this.state.userTable.map(key => {
-                        return (
-                            <Table.Row key={key.id}>
-                                {Object.values(key).map((item, i) => {
-                                    return (<Table.Cell key={i}>{item}</Table.Cell>)
-                                })}
-                            </Table.Row>
-                        )
-                    })}
-                </Table.Body>
-            </Table>
+            <Tab.Pane>
+                <Form unstackable>
+                    <Form.Group style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            padding: '20px'
+                        }} widths={2}>
+                        <Form.Select options={
+                            this.state.userTable.map(key => ({ text: key.name, value: key.task }))
+                        } required label='Select a user' onChange={this.handleSelectUser}/>  
+                        <div>{this.renderTask()}</div>                      
+                    </Form.Group>
+                </Form>
+            </Tab.Pane>
         );
     }
 }
@@ -92,4 +90,4 @@ export default connect(
         userTable: state.active.userTable
     }),
     { fetchUserTable }
-)(UserTable);
+)(SetTask);

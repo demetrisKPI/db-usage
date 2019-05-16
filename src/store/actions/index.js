@@ -1,4 +1,4 @@
-import { CHANGE_ACTIVE_ITEM, LOG_IN, FETCH_USER_TABLE } from './types';
+import { SET_TASK, CHANGE_ACTIVE_ITEM, LOG_IN, FETCH_USER_TABLE, FETCH_TASK_TABLE, ADD_USER, DELETE_USER } from './types';
 import axios from 'axios';
 
 export const changeActiveItem = obj => dispatch => {
@@ -15,6 +15,46 @@ export const fetchUserTable = () => dispatch => {
         .then(res => dispatch({ 
             type: FETCH_USER_TABLE, 
             payload: res.data 
+        })
+    )
+};
+
+export const fetchTaskTable = () => dispatch => {
+    axios
+        .get(`/get-tasks`)
+        .then(res => dispatch({ 
+            type: FETCH_TASK_TABLE, 
+            payload: res.data 
+        })
+    )
+};
+
+export const addUser = obj => dispatch => {
+    axios
+        .post(`/add-user`, obj)
+        .then(res => dispatch({ 
+            type: ADD_USER, 
+            payload: res
+        })
+    )
+};
+
+export const deleteUser = userid => dispatch => {
+    axios
+        .delete(`/delete-user`, userid)
+        .then(res => dispatch({ 
+            type: DELETE_USER, 
+            payload: res
+        })
+    )
+};
+
+export const setTask = obj => dispatch => {
+    axios
+        .post(`/set-user-task`, obj)
+        .then(res => dispatch({ 
+            type: DELETE_USER, 
+            payload: res
         })
     )
 };

@@ -1,9 +1,10 @@
-import { CHANGE_ACTIVE_ITEM, LOG_IN, FETCH_USER_TABLE } from '../actions/types';
+import { CHANGE_ACTIVE_ITEM, LOG_IN, FETCH_USER_TABLE, FETCH_TASK_TABLE } from '../actions/types';
 
 const initialState = {
     activeItem: '',
     logged: false,
-    userTable: []
+    userTable: [],
+    taskTable: []
 }
 
 export default function (state = initialState, action) {
@@ -22,6 +23,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 userTable: action.payload
+            };
+        case FETCH_TASK_TABLE:
+            return {
+                ...state,
+                taskTable: action.payload
             };
         default: 
             return state;

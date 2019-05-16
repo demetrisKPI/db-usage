@@ -7,3 +7,7 @@
 div, p, input, button, a{
 	box-sizing: border-box;
 }
+
+.main {
+    margin: 30px;
+}

@@ -40,7 +40,7 @@ class App extends Component {
 		return (
 			<div className="body">
 				<Navbar />
-				<div>{this.renderBody()}</div>
+				<div className='main'>{this.renderBody()}</div>
 			</div>
 		);
   	}
