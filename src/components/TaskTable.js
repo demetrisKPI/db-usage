@@ -4,32 +4,9 @@ import { Table } from 'semantic-ui-react';
 import { fetchTaskTable } from '../store/actions/'
 
 class TaskTable extends Component {
-    state = {
-        taskTable: [
-            {
-                "id": 1,
-                "name": "Say hello",
-                "user": null,
-                "state": null
-            },
-            {
-                "id": 2,
-                "name": "Say goodbuy",
-                "user": 4,
-                "state": "working on"
-            },
-            {
-                "id": 3,
-                "name": "Do task",
-                "user": 1,
-                "state": null
-            }
-        ]
+    componentDidMount() {
+        this.props.fetchTaskTable();
     }
-
-    // componentDidMount() {
-    //     this.props.fetchTaskTable();
-    // }
 
     render() {
         return (
@@ -44,7 +21,7 @@ class TaskTable extends Component {
                 </Table.Header>
 
                 <Table.Body>
-                    {this.state.taskTable.map(key => {
+                    {this.props.taskTable.map(key => {
                         return (
                             <Table.Row key={key.id}>
                                 {Object.values(key).map((item, i) => {

@@ -5,58 +5,11 @@ import { Tab, Form, Label, Header } from 'semantic-ui-react';
 
 class DeleteUser extends Component {
     state = {
-        done: false,
-        userTable: [
-            {
-                "id": 1,
-                "name": "Johny",
-                "task": 3,
-                "comm": 1,
-                "worbef": 1,
-                "skills": 1,
-                "knowledge": 1
-            },
-            {
-                "id": 2,
-                "name": "Johny Will",
-                "task": null,
-                "comm": 1,
-                "worbef": 0,
-                "skills": 1,
-                "knowledge": 0
-            },
-            {
-                "id": 4,
-                "name": "Jack",
-                "task": 2,
-                "comm": 0,
-                "worbef": 0,
-                "skills": 0,
-                "knowledge": 1
-            },
-            {
-                "id": 5,
-                "name": "Eblan",
-                "task": null,
-                "comm": 1,
-                "worbef": 0,
-                "skills": 1,
-                "knowledge": 0
-            },
-            {
-                "id": 7,
-                "name": "Eblann",
-                "task": null,
-                "comm": 1,
-                "worbef": 0,
-                "skills": 1,
-                "knowledge": 0
-            }
-        ]
+        done: false
     }
-    // componentDidMount() {
-    //     this.props.fetchUserTable();
-    // }
+    componentDidMount() {
+        this.props.fetchUserTable();
+    }
     handleSubmit = e => {
         if (this.state.user) {
             this.props.deleteUser(this.state.user);
@@ -86,7 +39,7 @@ class DeleteUser extends Component {
                         padding: '20px'
                     }} widths={2}>
                         <Form.Select required options={
-                            this.state.userTable.map(key => ({ text: key.name, value: key.id }))
+                            this.props.userTable.map(key => ({ text: key.name, value: key.id }))
                         } label='Choose a user you want to delete' onChange={this.handleChange} />
                         <Form.Button style={{
                             marginTop: '22px'

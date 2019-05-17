@@ -4,58 +4,9 @@ import { Table } from 'semantic-ui-react';
 import { fetchUserTable } from '../store/actions/'
 
 class UserTable extends Component {
-    state = {
-        userTable: [
-            {
-                "id": 1,
-                "name": "Johny",
-                "task": 3,
-                "comm": 1,
-                "worbef": 1,
-                "skills": 1,
-                "knowledge": 1
-            },
-            {
-                "id": 2,
-                "name": "Johny Will",
-                "task": null,
-                "comm": 1,
-                "worbef": 0,
-                "skills": 1,
-                "knowledge": 0
-            },
-            {
-                "id": 4,
-                "name": "Jack",
-                "task": 2,
-                "comm": 0,
-                "worbef": 0,
-                "skills": 0,
-                "knowledge": 1
-            },
-            {
-                "id": 5,
-                "name": "Eblan",
-                "task": null,
-                "comm": 1,
-                "worbef": 0,
-                "skills": 1,
-                "knowledge": 0
-            },
-            {
-                "id": 7,
-                "name": "Eblann",
-                "task": null,
-                "comm": 1,
-                "worbef": 0,
-                "skills": 1,
-                "knowledge": 0
-            }
-        ]
+    componentDidMount() {
+        this.props.fetchUserTable();
     }
-    // componentDidMount() {
-    //     this.props.fetchUserTable();
-    // }
     render() {
         return (
             <Table celled>
@@ -72,7 +23,7 @@ class UserTable extends Component {
                 </Table.Header>
 
                 <Table.Body>
-                    {this.state.userTable.map(key => {
+                    {this.props.userTable.map(key => {
                         return (
                             <Table.Row key={key.id}>
                                 {Object.values(key).map((item, i) => {

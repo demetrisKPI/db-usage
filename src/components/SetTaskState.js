@@ -24,26 +24,6 @@ class SetTask extends Component {
         "id": 4,
         "value": "done"
       },
-    ],
-    taskTable: [
-      {
-        "id": 1,
-        "name": "Say hello",
-        "user": null,
-        "state": null
-      },
-      {
-        "id": 2,
-        "name": "Say goodbuy",
-        "user": 4,
-        "state": "working on"
-      },
-      {
-        "id": 3,
-        "name": "Do task",
-        "user": 1,
-        "state": null
-      }
     ]
   }
   handleSelectTask = (e, { value }) => {
@@ -69,7 +49,7 @@ class SetTask extends Component {
       return (
         <Label style={{ margin: '20px' }} size='big' color='green'>
           Done!
-                    <Header style={{ marginTop: '10px' }} as='h5'>Now check the table or refresh to continue</Header>
+          <Header style={{ marginTop: '10px' }} as='h5'>Now check the table or refresh to continue</Header>
         </Label>
       )
     }
@@ -84,7 +64,7 @@ class SetTask extends Component {
             padding: '20px'
           }} widths={2}>
             <Form.Select options={
-              this.state.taskTable
+              this.props.taskTable
                 .map(key => ({ text: key.name, value: key.id }))
             } required label='Select a task' onChange={this.handleSelectTask} />
             <Form.Select options={

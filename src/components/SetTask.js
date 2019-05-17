@@ -7,74 +7,7 @@ class SetTask extends Component {
     state = {
         userid: 0,
         taskid: 0,
-        done: false,
-        userTable: [
-            {
-                "id": 1,
-                "name": "Johny",
-                "task": 3,
-                "comm": 1,
-                "worbef": 1,
-                "skills": 1,
-                "knowledge": 1
-            },
-            {
-                "id": 2,
-                "name": "Johny Will",
-                "task": null,
-                "comm": 1,
-                "worbef": 0,
-                "skills": 1,
-                "knowledge": 0
-            },
-            {
-                "id": 4,
-                "name": "Jack",
-                "task": 2,
-                "comm": 0,
-                "worbef": 0,
-                "skills": 0,
-                "knowledge": 1
-            },
-            {
-                "id": 5,
-                "name": "Eblan",
-                "task": null,
-                "comm": 1,
-                "worbef": 0,
-                "skills": 1,
-                "knowledge": 0
-            },
-            {
-                "id": 7,
-                "name": "Eblann",
-                "task": null,
-                "comm": 1,
-                "worbef": 0,
-                "skills": 1,
-                "knowledge": 0
-            }
-        ],
-        taskTable: [
-            {
-                "id": 1,
-                "name": "Say hello",
-                "user": null,
-                "state": null
-            },
-            {
-                "id": 2,
-                "name": "Say goodbuy",
-                "user": 4,
-                "state": "working on"
-            },
-            {
-                "id": 3,
-                "name": "Do task",
-                "user": 1,
-                "state": null
-            }
-        ]
+        done: false
     }
     handleSelectUser = (e, { value }) => {
         this.setState({ userid: value });
@@ -116,12 +49,12 @@ class SetTask extends Component {
                             padding: '20px'
                         }} widths={2}>
                         <Form.Select options={
-                            this.state.userTable
+                            this.props.userTable
                                 .filter(key => !key.task)
                                 .map(key => ({ text: key.name, value: key.id }))
                         } required label='Select a user' onChange={this.handleSelectUser}/>
                         <Form.Select options={
-                            this.state.taskTable
+                            this.props.taskTable
                                 .filter(key => !key.user)
                                 .map(key => ({ text: key.name, value: key.id }))
                         } required label='Select a task' onChange={this.handleSelectTask}/>

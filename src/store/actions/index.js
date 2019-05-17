@@ -1,4 +1,4 @@
-import { SET_TASK, CHANGE_ACTIVE_ITEM, LOG_IN, FETCH_USER_TABLE, FETCH_TASK_TABLE, ADD_USER, DELETE_USER, ADD_TASK, SET_TASK_STATE } from './types';
+import { SET_USER_TASK, SET_TASK, CHANGE_ACTIVE_ITEM, LOG_IN, FETCH_USER_TABLE, FETCH_TASK_TABLE, ADD_USER, DELETE_USER, ADD_TASK, SET_TASK_STATE } from './types';
 import axios from 'axios';
 
 export const changeActiveItem = obj => dispatch => {
@@ -15,8 +15,7 @@ export const fetchUserTable = () => dispatch => {
         .then(res => dispatch({
             type: FETCH_USER_TABLE,
             payload: res.data
-        })
-        )
+        }))
 };
 
 export const fetchTaskTable = () => dispatch => {
@@ -25,8 +24,7 @@ export const fetchTaskTable = () => dispatch => {
         .then(res => dispatch({
             type: FETCH_TASK_TABLE,
             payload: res.data
-        })
-        )
+        }))
 };
 
 export const addUser = obj => dispatch => {
@@ -35,8 +33,7 @@ export const addUser = obj => dispatch => {
         .then(res => dispatch({
             type: ADD_USER,
             payload: res
-        })
-        )
+        }))
 };
 
 export const deleteUser = userid => dispatch => {
@@ -45,8 +42,7 @@ export const deleteUser = userid => dispatch => {
         .then(res => dispatch({
             type: DELETE_USER,
             payload: res
-        })
-        )
+        }))
 };
 
 export const setTask = obj => dispatch => {
@@ -55,8 +51,7 @@ export const setTask = obj => dispatch => {
         .then(res => dispatch({
             type: SET_TASK,
             payload: res
-        })
-        )
+        }))
 };
 
 export const setTaskState = obj => dispatch => {
@@ -65,8 +60,7 @@ export const setTaskState = obj => dispatch => {
         .then(res => dispatch({
             type: SET_TASK_STATE,
             payload: res
-        })
-        )
+        }))
 };
 
 export const addTask = obj => dispatch => {
@@ -75,6 +69,14 @@ export const addTask = obj => dispatch => {
         .then(res => dispatch({
             type: ADD_TASK,
             payload: res
-        })
-        )
+        }))
+};
+
+export const setUserTask = obj => dispatch => {
+    axios
+        .post(`/set-another-user-task`, obj)
+        .then(res => dispatch({
+            type: SET_USER_TASK,
+            payload: res
+        }))
 };

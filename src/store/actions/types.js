@@ -7,3 +7,4 @@ export const DELETE_USER = 'DELETE_USER';
 export const SET_TASK = 'SET_TASK';
 export const ADD_TASK = 'ADD_TASK';
 export const SET_TASK_STATE = 'SET_TASK_STATE';
+export const SET_USER_TASK = 'SET_USER_TASK';
